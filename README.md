@@ -1,2 +1,4 @@
 # learningReact
-learning React 
+
+learning React
+my name is Adrian Majcher
