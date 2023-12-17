@@ -1,10 +1,9 @@
 import styles from "./FoldersList.module.css";
-
-import { useState } from "react";
 import { Folder } from "../folder/Folder";
 import { Title } from "../title/Title";
 import { TopBar } from "../top-bar/TopBar";
 import { AddNewButton } from "../add-new-button/AddNewButton";
+import { NavLink, useLoaderData, Form, redirect } from "react-router-dom";
 
 const Folders = ({ children }) => (
   <div className={styles["folders-column"]}>{children}</div>
@@ -15,40 +14,49 @@ const UserCreatedFolders = ({ children }) => (
   </div>
 );
 
-export function FoldersList() {
-  const [folders] = useState([
-    {
-      name: "Listy",
-      id: 1,
+export async function createFolder(args) {
+  const data = await args.request.formData();
+  const folderName = data.get("folder-name");
+  return fetch("http://localhost:3000/folders", {
+    method: "POST",
+    body: JSON.stringify({
+      name: folderName,
+    }),
+    headers: {
+      "Content-Type": "application/json",
     },
-    {
-      name: "Przemyślenia",
-      id: 2,
-    },
-  ]);
+  })
+    .then((res) => res.json())
+    .then((newFolder) => redirect(`/notes/${newFolder.id}`));
+}
+
+export const FoldersList = () => {
+  const folders = useLoaderData();
 
   return (
     <Folders>
       <TopBar>
-        <input
-          className={styles["new-folder-input"]}
-          type="text"
-          placeholder="Nazwa folderu"
-        />
-        <AddNewButton type="submit">+</AddNewButton>
+        <Form method="POST" action="/">
+          <input
+            className={styles["new-folder-input"]}
+            type="text"
+            placeholder="Nazwa folderu"
+            name="folder-name"
+          />
+          <AddNewButton type="submit">+</AddNewButton>
+        </Form>
       </TopBar>
 
       <Title>Foldery</Title>
       <UserCreatedFolders>
-        {folders.map((folder, idx) => (
-          <a href={`/notes/${folder.id}`} key={idx}>
-            <Folder>{folder.name}</Folder>
-          </a>
+        {folders.map((folder) => (
+          <NavLink key={folder.id} to={`/notes/${folder.id}`}>
+            {({ isActive }) => {
+              return <Folder active={isActive}>{folder.name}</Folder>;
+            }}
+          </NavLink>
         ))}
       </UserCreatedFolders>
-      {/* <Folder icon="archive">Archiwum</Folder> */}
     </Folders>
   );
-}
-
-export default FoldersList;
+};
