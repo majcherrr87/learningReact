@@ -16,17 +16,69 @@ export const CATEGORIES = [
   {
     categoryName: "Odzież",
     path: "odziez",
+    subcategories: [
+      {
+        categoryName: "Koszulki",
+        path: "koszulki",
+      },
+      {
+        categoryName: "Swetry",
+        path: "swetry",
+      },
+      {
+        categoryName: "Spodnie",
+        path: "Spodnie",
+      },
+    ],
   },
   {
     categoryName: "Obuwie",
     path: "obuwie",
+    subcategories: [
+      {
+        categoryName: "Eleganckie",
+        path: "eleganckie",
+      },
+      {
+        categoryName: "Sportowe",
+        path: "sportowe",
+      },
+      {
+        categoryName: "Sneakersy",
+        path: "sneakersy",
+      },
+    ],
   },
   {
     categoryName: "Akcesoria",
     path: "akcesoria",
+    subcategories: [
+      {
+        categoryName: "Torby",
+        path: "torby",
+      },
+      {
+        categoryName: "Zegarki",
+        path: "zagarki",
+      },
+    ],
   },
   {
     categoryName: "Sport",
     path: "sport",
+    subcategories: [
+      {
+        categoryName: "Piłka nożna",
+        path: "pilkanozna",
+      },
+      {
+        categoryName: "Narty",
+        path: "narty",
+      },
+      {
+        categoryName: "Pływanie",
+        path: "plywanie",
+      },
+    ],
   },
 ];
