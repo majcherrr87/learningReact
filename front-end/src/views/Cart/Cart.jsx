@@ -1,7 +1,6 @@
 import { CartProductList } from "../../components/CartProductsList/CartProductsList";
 import { CartSammary } from "../../components/CartSummary/CartSammary";
 import { FlexContainer } from "../../components/FlexContainer/FlexContainer";
-import { Layout } from "../../components/Layout/Layout";
 
 export function Cart() {
   const cartProducts = [
@@ -45,11 +44,9 @@ export function Cart() {
     },
   ];
   return (
-    <Layout>
-      <FlexContainer>
-        <CartProductList products={cartProducts} />
-        <CartSammary products={cartProducts} />
-      </FlexContainer>
-    </Layout>
+    <FlexContainer>
+      <CartProductList products={cartProducts} />
+      <CartSammary products={cartProducts} />
+    </FlexContainer>
   );
 }
