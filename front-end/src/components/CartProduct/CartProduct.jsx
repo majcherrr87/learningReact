@@ -1,4 +1,5 @@
 import REMOVE_ICON from "../../assets/remove.svg";
+import { Price } from "../Price/Price";
 import styles from "./CartProduct.module.css";
 
 export function CartProduct({ product }) {
@@ -10,11 +11,13 @@ export function CartProduct({ product }) {
           <h3>
             {product.brand} {product.productName}
           </h3>
-          <p>{product.pricePLN}zł</p>
+          <p>
+            <Price product={product} />
+          </p>
         </div>
         <p className={styles.priceRow}>
           <span>Cena:</span>
-          {product.pricePLN}zł
+          <Price product={product} />
         </p>
         <div className={styles.buttonRow}>
           <button>
