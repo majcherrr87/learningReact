@@ -27,7 +27,7 @@ export const CATEGORIES = [
       },
       {
         categoryName: "Spodnie",
-        path: "Spodnie",
+        path: "spodnie",
       },
     ],
   },

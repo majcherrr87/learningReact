@@ -9,6 +9,8 @@ import { Favourites } from "./views/Favourires/Favourires";
 import { Layout } from "./components/Layout/Layout";
 import { MainPage } from "./views/MainPage/MainPage";
 import { mainPageLoader } from "./api/mainPageLoader";
+import { ProductsList } from "./views/ProductsList/ProductList";
+import { productListLoader } from "./api/productListLoader";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +29,11 @@ const router = createBrowserRouter([
         path: ":gender?",
         element: <MainPage />,
         loader: mainPageLoader,
+      },
+      {
+        path: ":gender/:category/:subcategory?",
+        element: <ProductsList />,
+        loader: productListLoader,
       },
     ],
   },
